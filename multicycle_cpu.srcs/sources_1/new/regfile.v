@@ -21,6 +21,27 @@
 
 
 module regfile(
-
+    input clk,
+    input[4:0] rs1,
+    input[4:0] rs2,
+    input[4:0] rd,
+    input reg_write,
+    input[4:0] write_data,
+    output reg[31:0] rs1_data,
+    output reg[31:0] rs2_data
     );
+    
+    // defining of registers 
+    reg [31:0] my_reg [0:31];
+    
+    always @(*) begin
+        assign rs1_data = my_reg[rs1];
+        assign rs2_data = my_reg[rs2];
+    end 
+    
+    always @(posedge clk) begin
+        if (reg_write) begin
+            my_reg[rd] <= write_data;
+        end
+    end
 endmodule
