@@ -14,4 +14,4 @@ The output is the following
 - address: the address of our pc
 
 ### Mem
-The mem module is responsible for outputting the next address of our program
+Shared storage array holding both program's instructions and any data your program uses
