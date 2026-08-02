@@ -26,7 +26,7 @@ module mem(
     input mem_write,    // content @ address replaced by value of write data  
     input[31:0] write_data,
     input[31:0] address,           // comes from pc module or ALUOUT
-    output reg[31:0] mem_data  // what address is next
+    output reg[31:0] mem_data  // data of memeory that was read
     );
   
     // increment for pc of one is a byte
