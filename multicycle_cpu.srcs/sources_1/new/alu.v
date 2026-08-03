@@ -38,6 +38,15 @@ module alu (
             4'b0101: alu_out = srcA >> srcB[4:0];     // SRL (shift right logical)
             4'b1011: alu_out = $signed(srcA) >>> srcB[4:0];             // SRA (shift right arithmetic) — needs the signed handling we discussed
             4'b1111: alu_out = (srcA < srcB) ? 1 : 0; // SLT (set less than)
+            4'b1000: alu_out = ($unsigned(srcA) < $unsigned(srcB)) ? 1 : 0;     // SLTIU
+            4'b1001: alu_out = (srcA != srcB) ? 0 : 1;      // bne
+            4'b0100: alu_out = (srcA < srcB) ? 0 : 1;       // blt
+            4'b1100: alu_out = (srcA >= srcB) ? 0 : 1;       // bge
+            4'b1101: alu_out = ($unsigned(srcA) < $unsigned(srcB)) ? 0 : 1;       // bltu
+            4'b1110: alu_out = ($unsigned(srcA) >= $unsigned(srcB)) ? 0 : 1;       // bgeu
+            4'b1010: alu_out = (srcB << 12);
+
+
             default: alu_out = 32'hxxxxxxxx;    // undefined/error case
         endcase
 
